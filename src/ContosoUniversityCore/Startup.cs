@@ -96,6 +96,8 @@ namespace ContosoUniversityCore
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //DbInitializer.Initialize(context);
+            context.Database.EnsureDeleted();
             DbInitializer.Initialize(context);
         }
     }
