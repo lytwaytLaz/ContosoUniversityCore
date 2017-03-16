@@ -1,10 +1,11 @@
-﻿using ContosoUniversityCore.Models.AccountViewModels;
+﻿using ContosoUniversityCore.Data;
+using ContosoUniversityCore.Models.AccountViewModels;
 using System;
 using System.Collections.Generic;
 
 namespace ContosoUniversityCore.Models
 {
-    public enum Languages
+    public enum LanguagesEnum
     {
         Arabic,
         English,
@@ -12,7 +13,7 @@ namespace ContosoUniversityCore.Models
         Hungarian,
         Italian,
         Japanese,
-        Swedish,
+        Swedish
     }
     public class Student
     {
@@ -20,7 +21,10 @@ namespace ContosoUniversityCore.Models
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
         public DateTime EnrollmentDate { get; set; }
-        public Languages NativeLanguage { get; set; }
+        //public Languages NativeLanguage { get; set; }
+
+        public LanguagesEnum NativeLanguage { get; set; }
+
 
         public ICollection<Enrollment> Enrollments { get; set; }
     }
