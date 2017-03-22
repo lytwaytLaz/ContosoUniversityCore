@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversityCore.Data;
 using ContosoUniversityCore.Models;
+using System.Collections;
+using ContosoUniversityCore.Controllers;
 
 namespace ContosoUniversityCore.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly SchoolContext _context;
+        //private List<SelectListItem> _languages;
 
         public StudentsController(SchoolContext context)
         {
             _context = context;
+
         }
 
         // GET: Students
@@ -50,6 +54,7 @@ namespace ContosoUniversityCore.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
+            ViewBag.Languages = (new HelperController(_context)).LanguageDropdown();
             return View();
         }
 
@@ -60,6 +65,9 @@ namespace ContosoUniversityCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EnrollmentDate,FirstMidName,LastName,NativeLanguage")] Student student)
         {
+
+            
+
             try
             {
                 if (ModelState.IsValid)
@@ -88,6 +96,8 @@ namespace ContosoUniversityCore.Controllers
             }
 
             var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            ViewBag.Languages = (new HelperController(_context)).LanguageDropdown();
+
             if (student == null)
             {
                 return NotFound();
