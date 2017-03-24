@@ -55,6 +55,7 @@ namespace ContosoUniversityCore.Controllers
         public IActionResult Create()
         {
             ViewBag.Languages = (new HelperController(_context)).LanguageDropdown();
+            ViewData["Lang"] = (new HelperController(_context)).LanguageDropdown();
             return View();
         }
 

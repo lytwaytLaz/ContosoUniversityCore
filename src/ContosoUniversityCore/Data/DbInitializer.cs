@@ -18,6 +18,7 @@ namespace ContosoUniversityCore.Models
             {
                 return;   // DB has been seeded
             }
+
             var languages = new Languages[]
             {
             new Languages {NativeLanguage="Arabic"},
@@ -25,9 +26,10 @@ namespace ContosoUniversityCore.Models
             new Languages {NativeLanguage="Hungarian"},
             new Languages {NativeLanguage="Swedish"}
             };
-            foreach (Languages l in languages)
+
+            foreach (Languages lang in languages)
             {
-                context.Languages.Add(l);
+                context.Languages.Add(lang);
             }
             context.SaveChanges();
 
